@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet">
+</head>
+<body>
+    <main>
+
+        <H1 id="logo"><img src="logo.png" alt="Logo alura"></H1>
+        <textarea id="ingreso" type="text" placeholder="Ingrese el texto aquí"></textarea>
+
+        <ul>
+            <li class="forLi">
+                <img id="imgBoy" src="boy.png" alt="">
+                <h2 id="titMensaje">Ningún mensaje fue encontrado</h2>
+                <p id="mensajeFinal">Ingrese el mensaje que desee encriptar o desencriptar</p>
+            </li>
+        </ul>
+
+        <div class="inferior">
+            <div>
+                <img src="advertencia.png" alt="">
+                <p class="advertencia">Solo letras minúsculas y sin acentos</p>
+            </div>
+            
+            <button class="bEncriptar" id="bEncrip">Encriptar</button>
+            <button class="bDesencriptar" id="bDesencrip">Desencriptar</button>
+
+            <script>
+
+                var botonEncrip = document.getElementById("bEncrip");
+                var botonDesencrip = document.getElementById("bDesencrip");
+                var mensaje = document.querySelector("textarea");
+                var newMensaje= "Pepito";
+
+                let filtrar=true;
+                var reg = new RegExp(/[0-9A-Zá-ý]/g);
+
+                function filtro() {
+
+                    if(mensaje.value.match(reg)) {
+                        alert("Solo letras minúsculas y sin acentos ( ´ )");
+                        filtrar = false;
+                    } else if(mensaje.value == "") {
+                        alert("Por favor ingrese texto");
+                        filtrar = false;
+                    }
+                    else{
+                        filtrar=true;
+                    }
+                    
+                }
+
+                function encriptar(){
+
+                    filtro();
+
+                    if(filtrar==true){
+
+                    newMensaje=mensaje.value.replace(/e/g, "enter");
+                    newMensaje=newMensaje.replace(/i/g, "imes");
+                    newMensaje=newMensaje.replace(/a/g, "ai");
+                    newMensaje=newMensaje.replace(/o/g, "ober");
+                    newMensaje=newMensaje.replace(/u/g, "ufat");
+
+                    document.getElementById("mensajeFinal").innerHTML=newMensaje;
+                    document.getElementById("titMensaje").innerHTML="El mensaje encontrado fué:";
+                    document.getElementById("imgBoy").style.display = 'none';
+                    }
+
+                    
+                }
+
+                function desencriptar(){
+
+                newMensaje=mensaje.value.replace(/enter/g, "e");
+                newMensaje=newMensaje.replace(/imes/g, "i");
+                newMensaje=newMensaje.replace(/ai/g, "a");
+                newMensaje=newMensaje.replace(/ober/g, "o");
+                newMensaje=newMensaje.replace(/ufat/g, "u");
+
+                document.getElementById("mensajeFinal").innerHTML=newMensaje;
+
+                }
+
+                botonEncrip.onclick= encriptar;
+                botonDesencrip.onclick= desencriptar;
+
+            </script>
+        </div>
+
+    </main>
+
+</body>
+
+<footer>
+    <h2>Página realizada por Lucas G. Ybañez</h2>
+</footer>
+</html>
